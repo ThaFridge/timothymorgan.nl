@@ -7,71 +7,10 @@
     <meta name="description" content="Welcome to Timothy Morgan's official website. Explore the portfolio, projects, and blog of Timothy Morgan, a professional IT Systems Engineer.">
     <meta name="keywords" content="Timothy Morgan, IT Systems Engineer, Portfolio, Projects, Blog, Wordpress, Woocommerce, Freelancer">
     <meta name="author" content="Timothy Morgan">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-    <style>
-        body {
-            transition: filter 0.3s ease;
-        }
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/noscript.css">
+<link rel="stylesheet" href="assets/css/custom.css"> <!-- Add this line -->
 
-        #main-content.blur {
-            filter: blur(5px);
-        }
-
-        #cookie-warning {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            border-radius: 10px;
-        }
-
-        #cookie-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        #cookie-warning button {
-            background-color: #f1c40f;
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        #cookie-warning .reject {
-            background-color: #e74c3c;
-        }
-
-        /* Search Bar Styles */
-        #search-bar {
-            width: 100%;
-            padding: 10px;
-            margin: 20px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .highlight {
-            background-color: yellow;
-        }
-    </style>
 </head>
 <body class="is-preload">
     <div id="cookie-overlay"></div>
@@ -151,16 +90,40 @@
                         <li><a href="https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::DeveloperToolsAvailability">Source: ADMX Help</a></li>
                     </ul>
                     <hr>
-                    <p><b>ProxySettings</b> <a href="https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::ProxySettings">ADMX Help</a></p>
-                    <pre><code><b>HKLM</b> or <b>HKLU</b> Software\Policies\Microsoft\Edge\ProxySettings <b>REG_SZ</b></code></pre>
-                    <pre><code>{"ProxyMode": "direct", "ProxyPacUrl": "https://internal.site/example.pac", "ProxyServer": "123.123.123.123:8080", "ProxyBypassList": "https://www.example1.com,https://www.example2.com,https://internalsite/"}</code></pre>
-                    <hr>									
-                    <h3>Zscaler</h3>
-                    <pre><code>Lorem ipsum</code></pre>
-                    <h3>Citrix</h3>
-                    <pre><code>Lorem ipsum</code></pre>
+                    
+                    <h2>Powershell</h2>
+                    <p><b>Find username in AD with Powershell</b> Harden ability to access DOM Inspect mode for Chromium-based browsers via Windows Registry <br>1=Allow using the developer tools, <br>2= Don't allow using the developer tool </p>
+                    <table class="alt">
+                        <thead>
+                            <tr>
+                                <th>String</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Get-ADUser -Filter {SamAccountName -eq "username"}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    
+                    <p><b>To retrieve the groups that a user is assigned to in Active Directory using PowerShell</b> </p>
+                    <table class="alt">
+                        <thead>
+                            <tr>
+                                <th>String</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Import-Module ActiveDirectory; Get-ADPrincipalGroupMembership -Identity "username" | Select-Object Name</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    
                 </section>
-                <p>Keywords: Windows Registry, Microsoft Edge, Hardening, Pacfile, Zscaler</p>
+                <p>Keywords: Windows Registry, Microsoft Edge, Hardening, Pacfile, Zscaler, Powershell</p>
             </div>
         </div>
 
@@ -195,58 +158,69 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <script>
-        function getCookie(name) {
-            let value = "; " + document.cookie;
-            let parts = value.split("; " + name + "=");
-            if (parts.length === 2) return parts.pop().split(";").shift();
-        }
+<script>
+    function getCookie(name) {
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
 
-        function setCookie(name, value, days) {
-            let d = new Date();
-            d.setTime(d.getTime() + (days*24*60*60*1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }
+    function setCookie(name, value, days) {
+        let d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
 
-        function acceptCookies() {
-            setCookie("cookiePreference", "accepted", 14);
-            document.getElementById('cookie-warning').style.display = 'none';
-            document.getElementById('cookie-overlay').style.display = 'none';
-            document.getElementById('main-content').classList.remove('blur');
-        }
+    function acceptCookies() {
+        setCookie("cookiePreference", "accepted", 14);
+        document.getElementById('cookie-warning').style.display = 'none';
+        document.getElementById('cookie-overlay').style.display = 'none';
+        document.getElementById('main-content').classList.remove('blur');
+    }
 
-        function rejectCookies() {
-            setCookie("cookiePreference", "rejected", 14);
-            window.location.href = "https://www.google.com";
-        }
+    function rejectCookies() {
+        setCookie("cookiePreference", "rejected", 14);
+        window.location.href = "https://www.google.com";
+    }
 
-        window.onload = function() {
-            let cookiePreference = getCookie("cookiePreference");
-            if (!cookiePreference) {
-                document.getElementById('cookie-warning').style.display = 'block';
-                document.getElementById('cookie-overlay').style.display = 'block';
-                document.getElementById('main-content').classList.add('blur');
-            } else {
-                setCookie("cookiePreference", cookiePreference, 14);
-            }
+    window.onload = function () {
+        let cookiePreference = getCookie("cookiePreference");
+        if (!cookiePreference) {
+            document.getElementById('cookie-warning').style.display = 'block';
+            document.getElementById('cookie-overlay').style.display = 'block';
+            document.getElementById('main-content').classList.add('blur');
+        } else {
+            setCookie("cookiePreference", cookiePreference, 14);
         }
+    }
 
-        // Search Bar Functionality
-        document.getElementById('search-bar').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const content = document.getElementById('main-content');
-            const text = content.innerText.toLowerCase();
+    // Search Bar Functionality
+    document.getElementById('search-bar').addEventListener('input', function () {
+        const query = this.value.trim().toLowerCase();
+        const content = document.getElementById('main-content');
+        const paragraphs = content.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+        let firstFound = false;
+
+        paragraphs.forEach(paragraph => {
+            const text = paragraph.textContent.toLowerCase();
             const regex = new RegExp(query, 'gi');
 
             // Remove previous highlights
-            content.innerHTML = content.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+            paragraph.innerHTML = paragraph.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
 
-            if (query) {
-                const highlightedText = content.innerHTML.replace(regex, (match) => `<span class="highlight">${match}</span>`);
-                content.innerHTML = highlightedText;
+            if (query && text.includes(query)) {
+                const highlightedText = text.replace(regex, match => `<span class="highlight">${match}</span>`);
+                paragraph.innerHTML = highlightedText;
+
+                if (!firstFound) {
+                    // Scroll to the position of the first found element
+                    paragraph.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstFound = true;
+                }
             }
         });
-    </script>
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+    <div id="qrcode"></div>
+
+    <script>
+        // Generate QR code
+        var qrCodeDiv = document.getElementById("qrcode");
+        new QRCode(qrCodeDiv, {
+            text: "https://example.com", // URL or any other text you want to encode
+            width: 128, // Width of the QR code
+            height: 128 // Height of the QR code
+        });
+    </script>
+</body>
+</html>
