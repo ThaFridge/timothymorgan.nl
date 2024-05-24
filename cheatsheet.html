@@ -1,111 +1,219 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Timothy Morgan</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Welcome to Timothy Morgan's official website. Explore the portfolio, projects, and blog of Timothy Morgan, a professional IT Systems Engineer." />
-    <meta name="keywords" content="Timothy Morgan, IT Systems Engineer, Portfolio, Projects, Blog, Wordpress, Woocommerce, Freelancer" />
-    <meta name="author" content="Timothy Morgan" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <meta name="description" content="Welcome to Timothy Morgan's official website. Explore the portfolio, projects, and blog of Timothy Morgan, a professional IT Systems Engineer.">
+    <meta name="keywords" content="Timothy Morgan, IT Systems Engineer, Portfolio, Projects, Blog, Wordpress, Woocommerce, Freelancer">
+    <meta name="author" content="Timothy Morgan">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+    <style>
+        body {
+            transition: filter 0.3s ease;
+        }
+
+        #main-content.blur {
+            filter: blur(5px);
+        }
+
+        #cookie-warning {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            color: black;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            border-radius: 10px;
+        }
+
+        #cookie-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #cookie-warning button {
+            background-color: #f1c40f;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #cookie-warning .reject {
+            background-color: #e74c3c;
+        }
+    </style>
 </head>
 <body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <div id="cookie-overlay"></div>
+    <div id="cookie-warning">
+        This website uses cookies to ensure you get the best experience on our website.
+        <div>
+            <button onclick="acceptCookies()">Accept</button>
+            <button class="reject" onclick="rejectCookies()">Reject</button>
+        </div>
+    </div>
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Header -->
+        <header id="header">
+            <div class="inner">
+                <!-- Logo -->
+                <!-- <a href="index.html" class="logo">
+                    <span class="symbol"><img src="images/logo.svg" alt=""></span><span class="title">Weboriginal</span>
+                </a> -->
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+                <!-- Nav -->
+                <nav>
+                    <ul>
+                        <li><a href="#menu">Menu</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-							<!-- Logo
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Weboriginal</span>
-								</a>
-							-->
+        <!-- Menu -->
+        <nav id="menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cheatsheet.html">Windows Registry CMD cheatsheet</a></li>
+            </ul>
+        </nav>
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+        <!-- Main -->
+        <div id="main-content">
+            <div class="inner">
+                <header>
+                    <h1>Timothy Morgan</h1>
+                    <p>Timothy Morgan is een ervaren WordPress/WooCommerce engineer die de afgelopen jaren evenementen en webshops heeft geholpen hun online bereik te vergroten. Hij specialiseert zich in het gebruiksvriendelijk maken van websites. Momenteel werkt Timothy als IT Systems Engineer bij een groot internationaal callcenter. In zijn vrije tijd doet hij graag inspiratie op door fietstochten te maken in het heuvelachtige Limburg, België en Duitsland. Verder bouwt hij graag met LEGO aan diverse MOC-sets die terug te vinden zijn op het web, en staat hij regelmatig naast je op festivals te dansen links voor.</p>
+                </header>
 
-						</div>
-					</header>
+                <!-- Text -->
+                <section>
+                    <h2>Microsoft Edge</h2>
+                    <p><b>Developer Tools Availability </b> Harden ability to access DOM Inspect mode for Chromium-based browsers via Windows Registry <br>1=Allow using the developer tools, <br>2= Don't allow using the developer tool </p>
+                    <table class="alt">
+                        <thead>
+                            <tr>
+                                <th>Registry Hive</th>
+                                <th>Registry Path</th>
+                                <th>Value Name</th>
+                                <th>Value Type</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>HKLM or HKCU</td>
+                                <td>Software\Policies\Microsoft\Edge</td>
+                                <td>DeveloperToolsAvailability</td>
+                                <td>REG_DWORD</td> 
+                                <td>1 or 2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pre><code><b>Example:</b> HKEY_CURRENT_USER\Software\Policies\Microsoft\Edge\DeveloperToolsAvailability</code></pre>
+                    <ul class="copyright">
+                        <li><a href="https://learn.microsoft.com/nl-nl/DeployEdge/microsoft-edge-policies#developertoolsavailability">Source: Microsoft</a></li>
+                        <li><a href="https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::DeveloperToolsAvailability">Source: ADMX Help</a></li>
+                    </ul>
+                    <hr>
+                    <p><b>ProxySettings</b> <a href="https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::ProxySettings">ADMX Help</a></p>
+                    <pre><code><b>HKLM</b> or <b>HKLU</b> Software\Policies\Microsoft\Edge\ProxySettings <b>REG_SZ</b></code></pre>
+                    <pre><code>{"ProxyMode": "direct", "ProxyPacUrl": "https://internal.site/example.pac", "ProxyServer": "123.123.123.123:8080", "ProxyBypassList": "https://www.example1.com,https://www.example2.com,https://internalsite/"}</code></pre>
+                    <hr>									
+                    <h3>Zscaler</h3>
+                    <pre><code>Lorem ipsum</code></pre>
+                    <h3>Citrix</h3>
+                    <pre><code>Lorem ipsum</code></pre>
+                </section>
+                <p>Keywords: Windows Registry, Microsoft Edge, Hardening, Pacfile, Zscaler</p>
+            </div>
+        </div>
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<!--<<li><a href="generic.html">Ipsum veroeros</a></li>-->
-							<!--<<li><a href="generic.html">Tempus etiam</a></li>-->
-							<!--<<li><a href="generic.html">Consequat dolor</a></li>-->
-							<li><a href="cheatsheet.html">Windows Registry CMD cheathseet</a></li>
-						</ul>
-					</nav>
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <section></section>
+                <section>
+                    <h2>Follow</h2>
+                    <ul class="icons">
+                        <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+                        <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+                        <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+                        <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                </section>
+                <ul class="copyright">
+                    <li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-								<h1>Timothy Morgan</h1>
-								<p>Timothy Morgan is een ervaren WordPress/WooCommerce engineer die de afgelopen jaren evenementen en webshops heeft geholpen hun online bereik te vergroten. Hij specialiseert zich in het gebruiksvriendelijk maken van websites. Momenteel werkt Timothy als IT Systems Engineer bij een groot internationaal callcenter. In zijn vrije tijd doet hij graag inspiratie op door fietstochten te maken in het heuvelachtige Limburg, België en Duitsland. Verder bouwt hij graag met LEGO aan diverse MOC-sets die terug te vinden zijn op het web, en staat hij regelmatig naast je op festivals te dansen links voor.</p>
-							</header>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function getCookie(name) {
+            let value = "; " + document.cookie;
+            let parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
 
-							<!-- Text -->
-								<section>
-									<h2>Microsoft Edge</h2>
-									<p><b>Developer Tools Availability </b> Harden ability to acces DOM Inspect mode for Chromuimbased browsers via Windows Registry <br>1=Allow using the developer tools, <br>2= Don't allow using the developer tool <a href="https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::DeveloperToolsAvailability">ADMX Help</a></p>
-									<pre><code><b>HKLM</b> or <b>HKLU</b> Software\Policies\Microsoft\Edge\DeveloperToolsAvailability <b>REG_DWORD</b></code></pre>
-									<hr />
-									<p><b>ProxySettings</b> 1=Allow using the developer tools, 2= Don't allow using the developer tool <a href="https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::ProxySettings">ADMX Help</a></p>
-									<pre><code><b>HKLM</b> or <b>HKLU</b> Software\Policies\Microsoft\Edge\ProxySettings <b>REG_SZ</b></code></pre>
-									<pre><code>{"ProxyMode": "direct", "ProxyPacUrl": "https://internal.site/example.pac", "ProxyServer": "123.123.123.123:8080", "ProxyBypassList": "https://www.example1.com,https://www.example2.com,https://internalsite/"}</code></pre>
-									<hr />									
-                                    <h3>Zscaler</h3>
-									<pre><code>Lorem ipsum</code></pre>
-									<h3>Citrix</h3>
-									<pre><code>Lorem ipsum</code></pre>
-								</section>
-								<p>Keywords: WIndows Registry, Microsoft Edge, Hardening, Pacfile, Zscaler</p>
-						</div>
-					</div>
+        function setCookie(name, value, days) {
+            let d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
+        function acceptCookies() {
+            setCookie("cookiePreference", "accepted", 14);
+            document.getElementById('cookie-warning').style.display = 'none';
+            document.getElementById('cookie-overlay').style.display = 'none';
+            document.getElementById('main-content').classList.remove('blur');
+        }
 
-							</section>
-							<section>
-								<h2>Follow</h2>
-								<ul class="icons">
-									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-							</section>
-							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
+        function rejectCookies() {
+            setCookie("cookiePreference", "rejected", 14);
+            window.location.href = "https://www.google.com";
+        }
 
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+        window.onload = function() {
+            let cookiePreference = getCookie("cookiePreference");
+            if (!cookiePreference) {
+                document.getElementById('cookie-warning').style.display = 'block';
+                document.getElementById('cookie-overlay').style.display = 'block';
+                document.getElementById('main-content').classList.add('blur');
+            } else {
+                // Reset the cookie expiration to 14 days from the last visit
+                setCookie("cookiePreference", cookiePreference, 14);
+            }
+        }
+    </script>
+</body>
 </html>
