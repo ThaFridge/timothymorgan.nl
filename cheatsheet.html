@@ -57,6 +57,20 @@
         #cookie-warning .reject {
             background-color: #e74c3c;
         }
+
+        /* Search Bar Styles */
+        #search-bar {
+            width: 100%;
+            padding: 10px;
+            margin: 20px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -103,6 +117,9 @@
                     <h1>Timothy Morgan</h1>
                     <p>Timothy Morgan is een ervaren WordPress/WooCommerce engineer die de afgelopen jaren evenementen en webshops heeft geholpen hun online bereik te vergroten. Hij specialiseert zich in het gebruiksvriendelijk maken van websites. Momenteel werkt Timothy als IT Systems Engineer bij een groot internationaal callcenter. In zijn vrije tijd doet hij graag inspiratie op door fietstochten te maken in het heuvelachtige Limburg, België en Duitsland. Verder bouwt hij graag met LEGO aan diverse MOC-sets die terug te vinden zijn op het web, en staat hij regelmatig naast je op festivals te dansen links voor.</p>
                 </header>
+
+                <!-- Search Bar -->
+                <input type="text" id="search-bar" placeholder="Search...">
 
                 <!-- Text -->
                 <section>
@@ -177,6 +194,7 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
     <script>
         function getCookie(name) {
             let value = "; " + document.cookie;
@@ -186,7 +204,7 @@
 
         function setCookie(name, value, days) {
             let d = new Date();
-            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            d.setTime(d.getTime() + (days*24*60*60*1000));
             let expires = "expires=" + d.toUTCString();
             document.cookie = name + "=" + value + ";" + expires + ";path=/";
         }
@@ -210,10 +228,25 @@
                 document.getElementById('cookie-overlay').style.display = 'block';
                 document.getElementById('main-content').classList.add('blur');
             } else {
-                // Reset the cookie expiration to 14 days from the last visit
                 setCookie("cookiePreference", cookiePreference, 14);
             }
         }
+
+        // Search Bar Functionality
+        document.getElementById('search-bar').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const content = document.getElementById('main-content');
+            const text = content.innerText.toLowerCase();
+            const regex = new RegExp(query, 'gi');
+
+            // Remove previous highlights
+            content.innerHTML = content.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+
+            if (query) {
+                const highlightedText = content.innerHTML.replace(regex, (match) => `<span class="highlight">${match}</span>`);
+                content.innerHTML = highlightedText;
+            }
+        });
     </script>
 </body>
 </html>
