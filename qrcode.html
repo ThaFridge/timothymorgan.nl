@@ -27,6 +27,11 @@
                 return;
             }
 
+            if (typeof QRCode === "undefined") {
+                alert("QRCode library is not loaded or unavailable");
+                return;
+            }
+
             while (qrCodeDiv.firstChild) {
                 qrCodeDiv.removeChild(qrCodeDiv.firstChild);
             }
