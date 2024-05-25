@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator with Watermark</title>
+    <style>
+        #qrcode {
+            margin: 20px auto;
+            display: block;
+            position: relative;
+            width: 200px; /* Adjust the size as needed */
+            height: 200px; /* Adjust the size as needed */
+        }
+        #watermark {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 12px; /* Adjust the font size as needed */
+        }
+    </style>
+</head>
+<body>
+    <div id="qrcode"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/qrcode.min.js"></script>
+    <script>
+        // Generate QR code
+        var qrCodeDiv = document.getElementById("qrcode");
+        new QRCode(qrCodeDiv, {
+            text: "https://example.com", // URL or any other text you want to encode
+            width: 200,
+            height: 200
+        });
+
+        // Add watermark
+        var watermarkDiv = document.createElement("div");
+        watermarkDiv.id = "watermark";
+        watermarkDiv.textContent = "™";
+        qrCodeDiv.appendChild(watermarkDiv);
+    </script>
+</body>
+</html>
