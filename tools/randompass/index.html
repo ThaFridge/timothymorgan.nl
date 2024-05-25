@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timothy Morgan - Random Strong Password Generator</title>
+    <meta name="description" content="Welcome to Timothy Morgan's official website. Explore the portfolio, projects, and blog of Timothy Morgan, a professional IT Systems Engineer.">
+    <meta name="keywords" content="Random strong passwords, Active Directory">
+    <meta name="author" content="Timothy Morgan">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #generator {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .password {
+            font-size: 1.2em;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="generator">
+    <h1>Random Strong Password Generator</h1>
+    <div id="passwords"></div>
+    <button onclick="generatePasswords()">Generate Passwords</button>
+</div>
+
+<footer>
+    <p>&copy; 2024 Timothy Morgan. All rights reserved.</p>
+    <p><a href="https://timothymorgan.nl">Return to Homepage</a></p>
+</footer>
+
+<script>
+    function generatePasswords() {
+        const numberOfPasswords = 5; // Number of passwords to generate
+        const length = 16; // Desired length of each password
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+        const passwordsDiv = document.getElementById("passwords");
+        passwordsDiv.innerHTML = ""; // Clear previous passwords
+        
+        for (let i = 0; i < numberOfPasswords; i++) {
+            let password = "";
+            for (let j = 0, n = charset.length; j < length; ++j) {
+                password += charset.charAt(Math.floor(Math.random() * n));
+            }
+            const passwordElement = document.createElement("div");
+            passwordElement.className = "password";
+            passwordElement.textContent = password;
+            passwordsDiv.appendChild(passwordElement);
+        }
+    }
+</script>
+
+</body>
+</html>
