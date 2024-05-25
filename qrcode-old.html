@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        #qrcode {
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="urlInput" placeholder="Enter URL">
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <div id="qrcode"></div>
+
+
+    <script>
+        function generateQRCode() {
+            var urlInput = document.getElementById("urlInput");
+            var qrCodeDiv = document.getElementById("qrcode");
+
+            if (urlInput.value.trim() === "") {
+                alert("Please enter a URL");
+                return;
+            }
+
+            if (typeof QRCode === "undefined") {
+                alert("QRCode library is not loaded or unavailable");
+                return;
+            }
+
+            while (qrCodeDiv.firstChild) {
+                qrCodeDiv.removeChild(qrCodeDiv.firstChild);
+            }
+
+new QRCode(qrCodeDiv, {
+    text: "https://example.com",
+    width: 400,
+    height: 400,
+    correctLevel: QRCode.CorrectLevel.L // Change L to the desired error correction level (L, M, Q, or H)
+});
+        }
+    </script>
+</body>
+        <script src="assets/js/qrcode.js"></script>
+
+</html>
