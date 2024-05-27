@@ -3,94 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timothy Morgan - Random Strong Password Generator</title>
-    <meta name="description" content="Welcome to Timothy Morgan's official website. Explore the portfolio, projects, and blog of Timothy Morgan, a professional IT Systems Engineer.">
-    <meta name="keywords" content="Random strong passwords, Active Directory">
-    <meta name="author" content="Timothy Morgan">
+    <title>Password Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
-        }
-        #generator {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .password {
-            font-size: 1.2em;
-            margin: 10px 0;
-            word-break: break-all;
+            margin: 50px;
         }
         button {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            background-color: #007BFF;
-            color: white;
-            transition: background-color 0.3s;
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
         }
-        button:hover {
-            background-color: #0056b3;
-        }
-        footer {
-            text-align: center;
+        .passwords {
             margin-top: 20px;
-        }
-        footer a {
-            color: #007BFF;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        footer a:hover {
-            color: #0056b3;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
+    <h1>Password Generator</h1>
+    <button onclick="generateRandomPasswords()">Generate Random Passwords</button>
+    <button onclick="generateEasyToRememberPasswords()">Generate Easy-to-Remember Passwords</button>
+    <button onclick="generateCdKeyPasswords()">Generate CD-Key Passwords</button>
 
-<div id="generator">
-    <h1>Random Strong Password Generator</h1>
-    <div id="passwords"></div>
-    <button onclick="generatePasswords()">Generate Passwords</button>
-</div>
+    <div class="passwords" id="passwords"></div>
 
-<footer>
-    <p>&copy; 2024 Timothy Morgan. All rights reserved.</p>
-    <p><a href="https://timothymorgan.nl">Return to Homepage</a></p>
-</footer>
-
-<script>
-    function generatePasswords() {
-        const numberOfPasswords = 5; // Number of passwords to generate
-        const length = 16; // Desired length of each password
-        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
-        const passwordsDiv = document.getElementById("passwords");
-        passwordsDiv.innerHTML = ""; // Clear previous passwords
-        
-        for (let i = 0; i < numberOfPasswords; i++) {
-            let password = "";
-            for (let j = 0, n = charset.length; j < length; ++j) {
-                password += charset.charAt(Math.floor(Math.random() * n));
-            }
-            const passwordElement = document.createElement("div");
-            passwordElement.className = "password";
-            passwordElement.textContent = password;
-            passwordsDiv.appendChild(passwordElement);
+    <script>
+        function getRandomCharacter(chars) {
+            return chars[Math.floor(Math.random() * chars.length)];
         }
-    }
-</script>
 
+        function generateRandomPassword(length) {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                password += getRandomCharacter(chars);
+            }
+            return password;
+        }
+
+        function generateRandomPasswords() {
+            let passwords = [];
+            for (let i = 0; i < 5; i++) {
+                passwords.push(generateRandomPassword(12));
+            }
+            displayPasswords(passwords);
+        }
+
+        function generateEasyToRememberPassword() {
+            const words = [
+                "Mario", "Zelda", "Hobbit", "Matrix", "Ninja", "Alien", "Avenger", "Sparta",
+                "Halo", "Diablo", "Minecraft", "Fortnite", "Skyrim", "Cyberpunk", "Doom",
+                "Godfather", "Titanic", "Casablanca", "Terminator", "Rocky", "Gladiator", "Pulp",
+                "Bioshock", "Fallout", "MassEffect", "Overwatch", "Portal", "Witcher", "RedDead",
+                "Civ", "Battlefield", "Warcraft", "Starcraft", "HalfLife", "Tetris", "PacMan",
+                "DonkeyKong", "Sonic", "Dota", "League", "Valorant", "AmongUs", "Apex",
+                "Destiny", "Borderlands", "Dishonored", "FarCry", "Hitman", "JustCause",
+                "Metro", "Prey", "Quake", "ResidentEvil", "SilentHill", "StreetFighter",
+                "Tekken", "DarkSouls", "Bloodborne", "Sekiro", "EldenRing", "AssassinsCreed",
+                "MGS", "SplinterCell", "PrinceOfPersia", "WatchDogs", "GTA", "Uncharted",
+                "TombRaider", "Fable", "Halo", "FIFA", "NBA", "Madden", "NFS", "Forza",
+                "GranTurismo", "Burnout", "CrashBandicoot", "Spyro", "Ratchet", "Clank",
+                "SlyCooper", "Jak", "Daxter", "ShadowOfTheColossus", "Ico", "Nier", "Automata",
+                "LastOfUs", "GhostOfTsushima", "DaysGone", "HorizonZeroDawn", "Detroit", "UntilDawn",
+                "HeavyRain", "BeyondTwoSouls", "LifeIsStrange", "WalkingDead", "WolfAmongUs",
+                "Shawshank", "Godfather", "DarkKnight", "PulpFiction", "Schindler", "Rings",
+                "ForrestGump", "Inception", "FightClub", "EmpireStrikes", "Goodfellas", "Matrix",
+                "OneFlew", "SevenSamurai", "Se7en", "SilenceLambs", "CityOfGod", "SavingPrivate",
+                "Interstellar", "GreenMile", "Léon", "LionKing", "SpiritedAway", "AmericanHistory",
+                "Casablanca", "Psycho", "UsualSuspects", "TheDeparted", "Terminator2", "BackToFuture",
+                "Raiders", "RearWindow", "Gladiator", "ApocalypseNow", "Memento", "IndianaJones",
+                "SunsetBlvd", "TheGreatDictator", "CinemaParadiso", "TheLivesOthers", "GraveFireflies",
+                "PathsOfGlory", "Django", "WALL-E", "TheShining", "AvengersEndgame", "Witness",
+                "Aliens", "Amadeus", "Coco", "ToyStory", "Jaws", "InglouriousBasterds", "GoodWillHunting",
+                "StarWars", "ReservoirDogs", "Braveheart", "Requiem", "InTheNameFather", "BicycleThieves",
+                "EternalSunshine", "Oldboy", "PrincessMononoke", "OnceUponTimeWest", "YourName",
+                "Amélie", "AClockworkOrange", "LikeStarsOnEarth", "LawrenceArabia", "DoubleIndemnity",
+                "ToKillMockingbird", "TaxiDriver", "Hamilton", "DieHard", "Snatch", "Heat", "MontyPython",
+                "ToyStory3", "Scarface", "3Idiots", "Rashomon", "ASeparation", "Metropolis",
+                "IndianaJones", "AStreetsOf", "Vertigo", "CitizenKane", "NorthByNorthwest", "StarWars",
+                "Aliens", "Memento", "Coco", "SpiderMan", "ToyStory3", "ReservoirDogs"
+            ];
+            const specialChars = "!@#$%";
+            const number = Math.floor(Math.random() * 100);
+            const word1 = words[Math.floor(Math.random() * words.length)];
+            const word2 = words[Math.floor(Math.random() * words.length)];
+            const specialChar = getRandomCharacter(specialChars);
+            return `${word1}${specialChar}${word2}${number}`;
+        }
+
+        function generateEasyToRememberPasswords() {
+            let passwords = [];
+            for (let i = 0; i < 5; i++) {
+                passwords.push(generateEasyToRememberPassword());
+            }
+            displayPasswords(passwords);
+        }
+
+        function generateCdKeyPassword() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let password = "";
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    password += getRandomCharacter(chars);
+                }
+                if (i < 4) password += "-";
+            }
+            return password;
+        }
+
+        function generateCdKeyPasswords() {
+            let passwords = [];
+            for (let i = 0; i < 5; i++) {
+                passwords.push(generateCdKeyPassword());
+            }
+            displayPasswords(passwords);
+        }
+
+        function displayPasswords(passwords) {
+            const passwordsDiv = document.getElementById("passwords");
+            passwordsDiv.innerHTML = passwords.map(pw => `<p>${pw}</p>`).join("");
+        }
+    </script>
 </body>
 </html>
