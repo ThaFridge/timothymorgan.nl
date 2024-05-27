@@ -3,41 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator with Watermark</title>
-    <style>
-        #qrcode {
-            margin: 20px auto;
-            display: block;
-            position: relative;
-            width: 200px; /* Adjust the size as needed */
-            height: 200px; /* Adjust the size as needed */
-        }
-        #watermark {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            font-size: 12px; /* Adjust the font size as needed */
-        }
-    </style>
+    <title>Domain For Sale</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="qrcode"></div>
+    <div class="container">
+        <h1 class="mt-5">Domain Name For Sale</h1>
+        <p>This domain is currently for sale. Contact us for more information.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p id="contactInfo" class="mt-3">Contact information will appear here.</p>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/qrcode.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
-        // Generate QR code
-        var qrCodeDiv = document.getElementById("qrcode");
-        new QRCode(qrCodeDiv, {
-            text: "https://example.com", // URL or any other text you want to encode
-            width: 200,
-            height: 200
-        });
+        $(document).ready(function() {
+            // Function to fetch contact information from meta tags
+            function fetchContactInfo() {
+                var metaTags = document.getElementsByTagName('meta');
+                var contactInfo = '';
 
-        // Add watermark
-        var watermarkDiv = document.createElement("div");
-        watermarkDiv.id = "watermark";
-        watermarkDiv.textContent = "™";
-        qrCodeDiv.appendChild(watermarkDiv);
+                for (var i = 0; i < metaTags.length; i++) {
+                    if (metaTags[i].getAttribute('name') === 'contact') {
+                        contactInfo = metaTags[i].getAttribute('content');
+                        break;
+                    }
+                }
+
+                return contactInfo;
+            }
+
+            // Display contact information on page load
+            var initialContactInfo = fetchContactInfo();
+            $('#contactInfo').text(initialContactInfo);
+
+            // Submit form handler
+            $('#contactForm').submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                // Assuming here you would handle form submission through AJAX or backend
+                // For simplicity, just displaying a message
+                alert('Form submitted successfully! We will contact you soon.');
+                // Clear form fields
+                $(this)[0].reset();
+            });
+        });
     </script>
 </body>
 </html>
