@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain and Subdomain Inspector with WHOIS, Nameserver, DNS, and SSL Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .info {
+            margin-top: 20px;
+        }
+        .info div {
+            margin: 5px 0;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .whois, .nameservers, .dns-records, .ssl-info {
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Domain and Subdomain Inspector with WHOIS, Nameserver, DNS, and SSL Information</h1>
+    <div>
+        <input type="text" id="domainInput" placeholder="Enter a domain or subdomain">
+        <button onclick="analyzeDomain()">Analyze</button>
+    </div>
+    <div class="info">
+        <div><strong>Full Hostname:</strong> <span id="hostname"></span></div>
+        <div><strong>Domain:</strong> <span id="domain"></span></div>
+        <div><strong>Subdomain:</strong> <span id="subdomain"></span></div>
+    </div>
+    <div class="whois" id="whois">
+        <strong>WHOIS Information:</strong>
+        <pre id="whoisData">No data available</pre>
+    </div>
+    <div class="nameservers" id="nameservers">
+        <strong>Nameservers:</strong>
+        <pre id="nameserverData">No data available</pre>
+    </div>
+    <div class="dns-records" id="dnsRecords">
+        <strong>DNS Records:</strong>
+        <pre id="dnsRecordsData">No data available</pre>
+    </div>
+    <div class="ssl-info" id="sslInfo">
+        <strong>SSL Information:</strong>
+        <pre id="sslInfoData">No data available</pre>
+    </div>
+
+    <script>
+        async function analyzeDomain() {
+            const input = document.getElementById('domainInput').value;
+            const hostname = input.trim();
+            document.getElementById('hostname').innerText = hostname;
+
+            const parts = hostname.split('.');
+            let domain = '';
+            let subdomain = '';
+
+            if (parts.length > 2) {
+                domain = parts.slice(-2).join('.');
+                subdomain = parts.slice(0, -2).join('.');
+            } else {
+                domain = hostname;
+                subdomain = '(none)';
+            }
+
+            document.getElementById('domain').innerText = domain;
+            document.getElementById('subdomain').innerText = subdomain;
+
+            await fetchWhoisAndNameservers(domain);
+            await fetchDnsRecords(domain);
+            await fetchSslInfo(hostname);
+        }
+
+        async function fetchWhoisAndNameservers(domain) {
+            const whoisDataElement = document.getElementById('whoisData');
+            const nameserverDataElement = document.getElementById('nameserverData');
+            // Replace the following line with your WHOIS API call if you have one
+            whoisDataElement.innerText = 'WHOIS information: (not available with free services)';
+            // Replace the following line with your Nameserver API call if you have one
+            nameserverDataElement.innerText = 'Nameserver information: (not available with free services)';
+        }
+
+        async function fetchDnsRecords(domain) {
+            const dnsRecordsDataElement = document.getElementById('dnsRecordsData');
+            try {
+                const response = await fetch(`https://dns.google/resolve?name=${domain}&type=ANY`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+
+                if (data.Answer) {
+                    const records = data.Answer.map(record => {
+                        return `${record.name} - ${record.type} - ${record.data}`;
+                    }).join('\n');
+                    dnsRecordsDataElement.innerText = records;
+                } else {
+                    dnsRecordsDataElement.innerText = 'No DNS records found';
+                }
+            } catch (error) {
+                dnsRecordsDataElement.innerText = 'Error fetching DNS records: ' + error.message;
+            }
+        }
+
+        async function fetchSslInfo(hostname) {
+            const sslInfoDataElement = document.getElementById('sslInfoData');
+            try {
+                const response = await fetch(`https://api.ssllabs.com/api/v3/analyze?host=${hostname}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+
+                if (data.status === 'READY') {
+                    const grade = data.endpoints[0].grade;
+                    const validUntil = new Date(data.endpoints[0].details.cert.notAfter).toLocaleDateString();
+                    sslInfoDataElement.innerText = `Grade: ${grade}\nValid until: ${validUntil}`;
+                } else {
+                    sslInfoDataElement.innerText = 'SSL information not available';
+                }
+            } catch (error) {
+                sslInfoDataElement.innerText = 'Error fetching SSL information: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
