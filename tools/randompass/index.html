@@ -51,39 +51,78 @@
         }
 
         function generateEasyToRememberPassword() {
-            const words = [
-                "Mario", "Zelda", "Hobbit", "Matrix", "Ninja", "Alien", "Avenger", "Sparta",
-                "Halo", "Diablo", "Minecraft", "Fortnite", "Skyrim", "Cyberpunk", "Doom",
-                "Godfather", "Titanic", "Casablanca", "Terminator", "Rocky", "Gladiator", "Pulp",
-                "Bioshock", "Fallout", "MassEffect", "Overwatch", "Portal", "Witcher", "RedDead",
-                "Civ", "Battlefield", "Warcraft", "Starcraft", "HalfLife", "Tetris", "PacMan",
-                "DonkeyKong", "Sonic", "Dota", "League", "Valorant", "AmongUs", "Apex",
-                "Destiny", "Borderlands", "Dishonored", "FarCry", "Hitman", "JustCause",
-                "Metro", "Prey", "Quake", "ResidentEvil", "SilentHill", "StreetFighter",
-                "Tekken", "DarkSouls", "Bloodborne", "Sekiro", "EldenRing", "AssassinsCreed",
-                "MGS", "SplinterCell", "PrinceOfPersia", "WatchDogs", "GTA", "Uncharted",
-                "TombRaider", "Fable", "Halo", "FIFA", "NBA", "Madden", "NFS", "Forza",
-                "GranTurismo", "Burnout", "CrashBandicoot", "Spyro", "Ratchet", "Clank",
-                "SlyCooper", "Jak", "Daxter", "ShadowOfTheColossus", "Ico", "Nier", "Automata",
-                "LastOfUs", "GhostOfTsushima", "DaysGone", "HorizonZeroDawn", "Detroit", "UntilDawn",
-                "HeavyRain", "BeyondTwoSouls", "LifeIsStrange", "WalkingDead", "WolfAmongUs",
-                "Shawshank", "Godfather", "DarkKnight", "PulpFiction", "Schindler", "Rings",
-                "ForrestGump", "Inception", "FightClub", "EmpireStrikes", "Goodfellas", "Matrix",
-                "OneFlew", "SevenSamurai", "Se7en", "SilenceLambs", "CityOfGod", "SavingPrivate",
-                "Interstellar", "GreenMile", "Léon", "LionKing", "SpiritedAway", "AmericanHistory",
-                "Casablanca", "Psycho", "UsualSuspects", "TheDeparted", "Terminator2", "BackToFuture",
-                "Raiders", "RearWindow", "Gladiator", "ApocalypseNow", "Memento", "IndianaJones",
-                "SunsetBlvd", "TheGreatDictator", "CinemaParadiso", "TheLivesOthers", "GraveFireflies",
-                "PathsOfGlory", "Django", "WALL-E", "TheShining", "AvengersEndgame", "Witness",
-                "Aliens", "Amadeus", "Coco", "ToyStory", "Jaws", "InglouriousBasterds", "GoodWillHunting",
-                "StarWars", "ReservoirDogs", "Braveheart", "Requiem", "InTheNameFather", "BicycleThieves",
-                "EternalSunshine", "Oldboy", "PrincessMononoke", "OnceUponTimeWest", "YourName",
-                "Amélie", "AClockworkOrange", "LikeStarsOnEarth", "LawrenceArabia", "DoubleIndemnity",
-                "ToKillMockingbird", "TaxiDriver", "Hamilton", "DieHard", "Snatch", "Heat", "MontyPython",
-                "ToyStory3", "Scarface", "3Idiots", "Rashomon", "ASeparation", "Metropolis",
-                "IndianaJones", "AStreetsOf", "Vertigo", "CitizenKane", "NorthByNorthwest", "StarWars",
-                "Aliens", "Memento", "Coco", "SpiderMan", "ToyStory3", "ReservoirDogs"
-            ];
+const words = [
+    "Mario", "Zelda", "Hobbit", "Matrix", "Ninja", "Alien", "Avenger", "Sparta",
+    "Halo", "Diablo", "Minecraft", "Fortnite", "Skyrim", "Cyberpunk", "Doom",
+    "Godfather", "Titanic", "Casablanca", "Terminator", "Rocky", "Gladiator", "Pulp",
+    "Bioshock", "Fallout", "MassEffect", "Overwatch", "Portal", "Witcher", "RedDead",
+    "Civ", "Battlefield", "Warcraft", "Starcraft", "HalfLife", "Tetris", "PacMan",
+    "DonkeyKong", "Sonic", "Dota", "League", "Valorant", "AmongUs", "Apex",
+    "Destiny", "Borderlands", "Dishonored", "FarCry", "Hitman", "JustCause",
+    "Metro", "Prey", "Quake", "ResidentEvil", "SilentHill", "StreetFighter",
+    "Tekken", "DarkSouls", "Bloodborne", "Sekiro", "EldenRing", "AssassinsCreed",
+    "MGS", "SplinterCell", "PrinceOfPersia", "WatchDogs", "GTA", "Uncharted",
+    "TombRaider", "Fable", "Halo", "FIFA", "NBA", "Madden", "NFS", "Forza",
+    "GranTurismo", "Burnout", "CrashBandicoot", "Spyro", "Ratchet", "Clank",
+    "SlyCooper", "Jak", "Daxter", "ShadowOfTheColossus", "Ico", "Nier", "Automata",
+    "LastOfUs", "GhostOfTsushima", "DaysGone", "HorizonZeroDawn", "Detroit", "UntilDawn",
+    "HeavyRain", "BeyondTwoSouls", "LifeIsStrange", "WalkingDead", "WolfAmongUs",
+    "Shawshank", "Godfather", "DarkKnight", "PulpFiction", "Schindler", "Rings",
+    "ForrestGump", "Inception", "FightClub", "EmpireStrikes", "Goodfellas", "Matrix",
+    "OneFlew", "SevenSamurai", "Se7en", "SilenceLambs", "CityOfGod", "SavingPrivate",
+    "Interstellar", "GreenMile", "Léon", "LionKing", "SpiritedAway", "AmericanHistory",
+    "Casablanca", "Psycho", "UsualSuspects", "TheDeparted", "Terminator2", "BackToFuture",
+    "Raiders", "RearWindow", "Gladiator", "ApocalypseNow", "Memento", "IndianaJones",
+    "SunsetBlvd", "TheGreatDictator", "CinemaParadiso", "TheLivesOthers", "GraveFireflies",
+    "PathsOfGlory", "Django", "WALL-E", "TheShining", "AvengersEndgame", "Witness",
+    "Aliens", "Amadeus", "Coco", "ToyStory", "Jaws", "InglouriousBasterds", "GoodWillHunting",
+    "StarWars", "ReservoirDogs", "Braveheart", "Requiem", "InTheNameFather", "BicycleThieves",
+    "EternalSunshine", "Oldboy", "PrincessMononoke", "OnceUponTimeWest", "YourName",
+    "Amélie", "AClockworkOrange", "LikeStarsOnEarth", "LawrenceArabia", "DoubleIndemnity",
+    "ToKillMockingbird", "TaxiDriver", "Hamilton", "DieHard", "Snatch", "Heat", "MontyPython",
+    "ToyStory3", "Scarface", "3Idiots", "Rashomon", "ASeparation", "Metropolis",
+    "IndianaJones", "AStreetsOf", "Vertigo", "CitizenKane", "NorthByNorthwest", "StarWars",
+    "Aliens", "Memento", "Coco", "SpiderMan", "ToyStory3", "ReservoirDogs",
+    
+    // Added city names
+    "NewYork", "LosAngeles", "Chicago", "Houston", "Phoenix", "Philadelphia",
+    "SanAntonio", "SanDiego", "Dallas", "SanJose", "Austin", "Jacksonville",
+    "FortWorth", "Columbus", "Charlotte", "SanFrancisco", "Indianapolis", "Seattle",
+    "Denver", "Washington", "Boston", "ElPaso", "Nashville", "Detroit", "OklahomaCity",
+    "Portland", "LasVegas", "Memphis", "Louisville", "Baltimore", "Milwaukee", "Albuquerque",
+    "Tucson", "Fresno", "Sacramento", "KansasCity", "Atlanta", "Miami", "London",
+    "Paris", "Tokyo", "Beijing", "Moscow", "Berlin", "Madrid", "Rome", "Sydney",
+    "Dubai", "Toronto", "Vancouver", "MexicoCity", "SaoPaulo", "BuenosAires",
+
+    // Added Star Trek names
+    "Kirk", "Spock", "McCoy", "Scotty", "Uhura", "Sulu", "Chekov", "Picard", "Riker", "Data",
+    "Worf", "LaForge", "Troi", "Crusher", "Q", "Janeway", "Chakotay", "Tuvok", "SevenOfNine",
+    "Paris", "Neelix", "Sisko", "Kira", "Odo", "Quark", "Dax", "Bashir", "Garak", "Archer",
+    "T'Pol", "Trip", "Reed", "Mayweather", "Hoshi", "Phlox",
+
+    // Added Lord of the Rings names
+    "Frodo", "Sam", "Gandalf", "Aragorn", "Legolas", "Gimli", "Boromir", "Merry", "Pippin",
+    "Gollum", "Smeagol", "Saruman", "Elrond", "Galadriel", "Eowyn", "Faramir", "Theoden",
+    "Denethor", "Bilbo", "Arwen", "Treebeard", "Thorin", "Balin", "Dwalin", "Fili", "Kili",
+    "Dori", "Nori", "Ori", "Oin", "Gloin", "Bifur", "Bofur", "Bombur", "Bard", "Smaug",
+    "Thranduil", "Beorn", "Radagast", "Shelob", "TomBombadil",
+
+    // Added character names from games
+    "Link", "Ganon", "Peach", "Luigi", "Bowser", "Samus", "Kirby", "Fox", "Falco", "Marth",
+    "Ness", "CaptainFalcon", "Jigglypuff", "Zelda", "Sheik", "DrMario", "Pichu", "Ganondorf",
+    "Roy", "Chrom", "Ike", "Robin", "Corrin", "Bayonetta", "Incineroar", "Joker", "Hero",
+    "Byleth", "MinMin", "Steve", "Sephiroth", "Pyra", "Mythra", "Kazuya", "Sora", "Kratos",
+    "Atreus", "LaraCroft", "NathanDrake", "Joel", "Ellie", "Aloy", "Geralt", "Ciri", "Yennefer",
+    "Triss", "Ezio", "Altair", "Connor", "Desmond", "Bayek", "Alexios", "Kassandra", "Eivor",
+    "MasterChief", "Cortana", "Arbiter", "Locke", "NobleSix", "Mario", "Luigi", "Peach",
+    "Toad", "Yoshi", "DonkeyKong", "DiddyKong", "Daisy", "Bowser", "KoopaTroopa", "Wario",
+    "Waluigi", "Rosalina", "Luma", "BowserJr", "KingBoo", "Link", "Zelda", "Sheik", "Ganondorf",
+    "Samus", "ZeroSuitSamus", "Pit", "Palutena", "DarkPit", "Marth", "Roy", "Ike", "Robin",
+    "Lucina", "Corrin", "Chrom", "Byleth", "MrGameAndWatch", "Olimar", "Pikmin", "R.O.B.",
+    "DuckHunt", "Banjo", "Kazooie", "Steve", "Alex", "Zombie", "Enderman", "Sephiroth",
+    "Pyra", "Mythra", "Kazuya", "Sora"
+];
+
             const specialChars = "!@#$%";
             const number = Math.floor(Math.random() * 100);
             const word1 = words[Math.floor(Math.random() * words.length)];
