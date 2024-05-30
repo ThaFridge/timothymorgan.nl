@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clocks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .clock {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            width: 200px;
+            font-size: 1.5em;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Current Time</h1>
+    <div class="clock" id="amsterdam">
+        <h2>Amsterdam</h2>
+        <div id="time-amsterdam"></div>
+    </div>
+    <div class="clock" id="suriname">
+        <h2>Suriname</h2>
+        <div id="time-suriname"></div>
+    </div>
+    <div class="clock" id="greece">
+        <h2>Greece</h2>
+        <div id="time-greece"></div>
+    </div>
+
+    <script>
+        function updateTime() {
+            // Create a new Date object for the current time
+            const now = new Date();
+
+            // Calculate the time offsets
+            const amsterdamOffset = 2 * 60; // Amsterdam is UTC+2 in summer (CEST)
+            const surinameOffset = -3 * 60; // Suriname is UTC-3
+            const greeceOffset = 3 * 60; // Greece is UTC+3 in summer (EEST)
+
+            // Get the current UTC time in minutes
+            const utcMinutes = now.getUTCMinutes() + now.getUTCHours() * 60;
+
+            // Calculate the local times
+            const amsterdamTime = new Date(now.getTime() + amsterdamOffset * 60 * 1000);
+            const surinameTime = new Date(now.getTime() + surinameOffset * 60 * 1000);
+            const greeceTime = new Date(now.getTime() + greeceOffset * 60 * 1000);
+
+            // Format the times as HH:MM:SS
+            document.getElementById('time-amsterdam').textContent = amsterdamTime.toLocaleTimeString();
+            document.getElementById('time-suriname').textContent = surinameTime.toLocaleTimeString();
+            document.getElementById('time-greece').textContent = greeceTime.toLocaleTimeString();
+        }
+
+        // Update the time every second
+        setInterval(updateTime, 1000);
+
+        // Initialize the time display
+        updateTime();
+    </script>
+</body>
+</html>
