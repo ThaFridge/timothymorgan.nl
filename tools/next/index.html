@@ -24,104 +24,105 @@
     </div>
 
     <script>
-        // Get the current date in the format "yyyy-MM-dd"
-        const currentdate = new Date().toISOString().split('T')[0];
+      // Get the current date in the format "yyyy-MM-dd"
+const currentdate = new Date().toISOString().split('T')[0];
 
-        // Define the request bodies
-        const bodyBeurs = {
-            versionInfo: {
-                moduleVersion: "NaeRwI833RVxUnhjiSkxcQ",
-                apiVersion: "Bc8_XAfp3W7kn4dKB4nXdg"
-            },
-            viewName: "MainFlow.MarketPrices",
-            screenData: {
-                variables: {
-                    Graphsize: 348,
-                    Filter_CurrentHour: 13,
-                    Filter_PriceDate: currentdate,
-                    Filter_CostsLevelId: 1,
-                    IsOpenPopup: false,
-                    HighchartsJSON: "",
-                    DistributionId: 3,
-                    IsDesktop: false,
-                    IsTablet: false,
-                    CurrentElectricityPrice_Local: "",
-                    CurrentElectricityPricePlus_Local: "",
-                    IsLoading: true
-                }
-            }
-        };
-
-        const bodyBeursPlus = {
-            versionInfo: {
-                moduleVersion: "NaeRwI833RVxUnhjiSkxcQ",
-                apiVersion: "Bc8_XAfp3W7kn4dKB4nXdg"
-            },
-            viewName: "MainFlow.MarketPrices",
-            screenData: {
-                variables: {
-                    Graphsize: 348,
-                    Filter_CurrentHour: 13,
-                    Filter_PriceDate: currentdate,
-                    Filter_CostsLevelId: 3,
-                    IsOpenPopup: false,
-                    HighchartsJSON: "",
-                    DistributionId: 3,
-                    IsDesktop: false,
-                    IsTablet: false,
-                    CurrentElectricityPrice_Local: "",
-                    CurrentElectricityPricePlus_Local: "",
-                    IsLoading: true
-                }
-            }
-        };
-
-        // Define headers
-        const headers = {
-            'X-CSRFToken': 'T6C+9iB49TLra4jEsMeSckDMNhQ=',
-            'Content-Type': 'application/json'
-        };
-
-        // Define the URLs
-        const url = 'https://mijn.nextenergy.nl/Website_CW/screenservices/Website_CW/MainFlow/WB_EnergyPrices/DataActionGetDataPoints';
-
-        // Make the requests
-        async function fetchData() {
-            try {
-                const requestBeurs = await fetch(url, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify(bodyBeurs)
-                });
-
-                const requestBeursPlus = await fetch(url, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify(bodyBeursPlus)
-                });
-
-                const convertBeurs = await requestBeurs.json();
-                const convertBeursPlus = await requestBeursPlus.json();
-
-                const GasprijsBeurs = convertBeurs.data.CurrentGasPrice;
-                const GasprijsBeursPlus = convertBeursPlus.data.CurrentGasPrice;
-                const StroomprijsBeurs = convertBeurs.data.CurrentElectricityPrice.replace("€", "").trim();
-                const StroomprijsBeursPlus = convertBeursPlus.data.CurrentElectricityPlusPrice.replace("€", "").trim();
-
-                const DalUrenStroom = convertBeursPlus.data.OffPeakMomentsLst.List.filter(item => item.IsOffPeak).map(item => item.Label);
-
-                document.getElementById('GasprijsBeurs').innerText = GasprijsBeurs;
-                document.getElementById('GasprijsBeursPlus').innerText = GasprijsBeursPlus;
-                document.getElementById('StroomprijsBeurs').innerText = StroomprijsBeurs;
-                document.getElementById('StroomprijsBeursPlus').innerText = StroomprijsBeursPlus;
-                document.getElementById('DalurenStroom').innerText = DalUrenStroom.join(', ');
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+// Define the request bodies
+const bodyBeurs = {
+    versionInfo: {
+        moduleVersion: "NaeRwI833RVxUnhjiSkxcQ",
+        apiVersion: "Bc8_XAfp3W7kn4dKB4nXdg"
+    },
+    viewName: "MainFlow.MarketPrices",
+    screenData: {
+        variables: {
+            Graphsize: 348,
+            Filter_CurrentHour: 13,
+            Filter_PriceDate: currentdate,
+            Filter_CostsLevelId: 1,
+            IsOpenPopup: false,
+            HighchartsJSON: "",
+            DistributionId: 3,
+            IsDesktop: false,
+            IsTablet: false,
+            CurrentElectricityPrice_Local: "",
+            CurrentElectricityPricePlus_Local: "",
+            IsLoading: true
         }
+    }
+};
 
-        fetchData();
+const bodyBeursPlus = {
+    versionInfo: {
+        moduleVersion: "NaeRwI833RVxUnhjiSkxcQ",
+        apiVersion: "Bc8_XAfp3W7kn4dKB4nXdg"
+    },
+    viewName: "MainFlow.MarketPrices",
+    screenData: {
+        variables: {
+            Graphsize: 348,
+            Filter_CurrentHour: 13,
+            Filter_PriceDate: currentdate,
+            Filter_CostsLevelId: 3,
+            IsOpenPopup: false,
+            HighchartsJSON: "",
+            DistributionId: 3,
+            IsDesktop: false,
+            IsTablet: false,
+            CurrentElectricityPrice_Local: "",
+            CurrentElectricityPricePlus_Local: "",
+            IsLoading: true
+        }
+    }
+};
+
+// Define headers
+const headers = {
+    'X-CSRFToken': 'T6C+9iB49TLra4jEsMeSckDMNhQ=',
+    'Content-Type': 'application/json'
+};
+
+// Define the URLs
+const url = 'https://mijn.nextenergy.nl/Website_CW/screenservices/Website_CW/MainFlow/WB_EnergyPrices/DataActionGetDataPoints';
+
+// Make the requests
+async function fetchData() {
+    try {
+        const requestBeurs = await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(bodyBeurs)
+        });
+
+        const requestBeursPlus = await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(bodyBeursPlus)
+        });
+
+        const convertBeurs = await requestBeurs.json();
+        const convertBeursPlus = await requestBeursPlus.json();
+
+        const GasprijsBeurs = convertBeurs.data.CurrentGasPrice;
+        const GasprijsBeursPlus = convertBeursPlus.data.CurrentGasPrice;
+        const StroomprijsBeurs = convertBeurs.data.CurrentElectricityPrice.replace("€", "").trim();
+        const StroomprijsBeursPlus = convertBeursPlus.data.CurrentElectricityPlusPrice.replace("€", "").trim();
+
+        const DalUrenStroom = convertBeursPlus.data.OffPeakMomentsLst.List.filter(item => item.IsOffPeak).map(item => item.Label);
+
+        document.getElementById('GasprijsBeurs').innerText = GasprijsBeurs;
+        document.getElementById('GasprijsBeursPlus').innerText = GasprijsBeursPlus;
+        document.getElementById('StroomprijsBeurs').innerText = StroomprijsBeurs;
+        document.getElementById('StroomprijsBeursPlus').innerText = StroomprijsBeursPlus;
+        document.getElementById('DalurenStroom').innerText = DalUrenStroom.join(', ');
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+fetchData();
+
     </script>
 </body>
 </html>
